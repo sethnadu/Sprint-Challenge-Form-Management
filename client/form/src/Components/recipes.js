@@ -25,12 +25,13 @@ const useStyles = makeStyles({
 });
 
 function RecipesCard({ recipe }) {
-  console.log(recipe);
+
   const classes = useStyles();
   return (
     <div>
       {recipe.map(item => {
         return (
+         <div key = {item.name}>
           <Card className={classes.card}>
             <CardContent>
               <Typography
@@ -48,11 +49,12 @@ function RecipesCard({ recipe }) {
               </Typography>
               <Typography variant="body2" component="p">
                 {item.ingredients.map(ingredient => {
-                   return <li>{ingredient}</li>
+                   return <li key = {ingredient}>{ingredient}</li>
                 })}
               </Typography>
             </CardContent>
           </Card>
+          </div>
         );
       })}
     </div>

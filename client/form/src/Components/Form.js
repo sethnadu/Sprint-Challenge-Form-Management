@@ -7,15 +7,15 @@ import RecipesCard from "./recipes.js";
 
 
 
-const FormOriginal = ({touched, errors, addRecipe, recipes, status}) => {
+const FormOriginal = ({touched, errors, addRecipe, recipes}) => {
 
         useEffect(() => {
             axios
             .get("http://localhost:5000/api/restricted/data")
             .then(response => addRecipe(response.data))
             .catch(error => console.log(error))
-        }, [])
-console.log(recipes)
+        }, [addRecipe])
+
     return (
         <div>
             <Form>
@@ -25,9 +25,11 @@ console.log(recipes)
                 <Field type = "password" name = "password" placeholder = "Password" />
                 {touched.password && errors.password && <p>{errors.password}</p>}
                 <button type ="submit">Submit</button>
+
                 {recipes.map(recipe => {
-                  return  <RecipesCard key = {Date.now()} recipe = {recipe} />
-                })}
+                  return  <RecipesCard data-testid="recipe" key = {Date.now()} recipe = {recipe} />
+                })};
+
             </Form>
             {}
         </div>
@@ -47,12 +49,13 @@ const FormikForm = withFormik({
         password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required")
     }),
 
-    handleSubmit(values, {resetForm, setErrors, setStatus}) {
+    handleSubmit(values, {resetForm}) {
         axios
             .post("http://localhost:5000/api/register", values)
-            .then(response => setStatus(response.data))
+            .then(response => console.log(response.data))
             .catch(error => console.log(error))
-    }
+        resetForm();    
+    }   
 })(FormOriginal);
 
 export default FormikForm;
