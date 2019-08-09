@@ -25,20 +25,38 @@ const FormInfo = Styled.div `
 
 `
 
+const EntireContainer = Styled.div `
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+
+
+`
+
+const RecipeContainer = Styled.div `
+
+    display: flex;
+    flex-flow: row wrap;
+    margin: auto;
+    justify-content: space-evenly;
+
+`
+
 
 
 const FormOriginal = ({touched, errors, addRecipe, recipes}) => {
         // uncommit to get working
-        // useEffect(() => {
-        //     axios
-        //     .get("http://localhost:5000/api/restricted/data")
-        //     .then(response => addRecipe(response.data))
-        //     .catch(error => console.log(error))
-        // }, [addRecipe])
+        useEffect(() => {
+            axios
+            .get("http://localhost:5000/api/restricted/data")
+            .then(response => addRecipe(response.data))
+            .catch(error => console.log(error))
+        }, [addRecipe])
 
     
 
     return (
+        <EntireContainer>
         <FormContainer>
             <Form>
              <FormInfo>
@@ -49,13 +67,17 @@ const FormOriginal = ({touched, errors, addRecipe, recipes}) => {
                 {touched.password && errors.password && <p>{errors.password}</p>}
                 <button type ="submit">Submit</button>
                 {/* Uncomment to get code working */}
-                {/* {recipes.map(recipe => {
-                  return  <RecipesCard data-testid="recipe" key = {Date.now()} recipe = {recipe} />
-                })}; */}
+               
             </FormInfo>
             </Form>
-            
+             
         </FormContainer>
+        <RecipeContainer>
+        {recipes.map(recipe => {
+                  return  <RecipesCard data-testid="recipe" key = {Date.now()} recipe = {recipe} />
+                })};
+        </RecipeContainer>        
+        </EntireContainer>
     )
 }
 

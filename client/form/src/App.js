@@ -8,9 +8,9 @@ class App extends React.Component {
     this.state = {
       recipes: [
         // Commit out to get code working
-      {id: 1, name: "burger"},
-      {id: 2, name: "eggs"},
-      {id: 3, name: "hotdog"}
+      // {id: 1, name: "burger"},
+      // {id: 2, name: "eggs"},
+      // {id: 3, name: "hotdog"}
     ]
       
     }

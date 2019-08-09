@@ -22,13 +22,19 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  cardContainer: {
+    display: "flex",
+    flexFlow: "row wrap",
+    width: "800px",
+    margin: "auto"
+  }
 });
 
 function RecipesCard({ recipe }) {
 
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.cardContainer}>
       {recipe.map(item => {
         return (
          <div key = {item.name}>
