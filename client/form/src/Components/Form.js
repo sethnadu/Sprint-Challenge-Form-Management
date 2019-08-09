@@ -2,13 +2,33 @@ import React, {useEffect} from "react";
 import {Form, Field, withFormik} from "formik";
 import axios from "axios";
 import * as Yup from "yup";
+import Styled from "styled-components";
 
 import RecipesCard from "./recipes.js";
+
+const FormContainer = Styled.div `
+    display: flex;
+    width: 400px;
+    height: 400px;
+    margin: 30px auto 30px auto;
+    border: 2px solid black;
+    justify-content: center;
+    background-color: lightgray;
+
+`
+const FormInfo = Styled.div `
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    height: 300px;
+    justify-content: space-evenly;
+
+`
 
 
 
 const FormOriginal = ({touched, errors, addRecipe, recipes}) => {
-
+        // uncommit to get working
         // useEffect(() => {
         //     axios
         //     .get("http://localhost:5000/api/restricted/data")
@@ -19,22 +39,23 @@ const FormOriginal = ({touched, errors, addRecipe, recipes}) => {
     
 
     return (
-        <div>
+        <FormContainer>
             <Form>
+             <FormInfo>
                 <h2>User Signup</h2>
                 <Field type = "text" name = "username" placeholder = "Username" />
                 {touched.username && errors.username && <p>{errors.username}</p>}
                 <Field type = "password" name = "password" placeholder = "Password" />
                 {touched.password && errors.password && <p>{errors.password}</p>}
-                <button data-testid="test"  type ="submit">Submit</button>
-
+                <button type ="submit">Submit</button>
+                {/* Uncomment to get code working */}
                 {/* {recipes.map(recipe => {
                   return  <RecipesCard data-testid="recipe" key = {Date.now()} recipe = {recipe} />
                 })}; */}
-
+            </FormInfo>
             </Form>
-            {}
-        </div>
+            
+        </FormContainer>
     )
 }
 

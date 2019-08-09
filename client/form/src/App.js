@@ -7,6 +7,7 @@ class App extends React.Component {
     super();
     this.state = {
       recipes: [
+        // Commit out to get code working
       {id: 1, name: "burger"},
       {id: 2, name: "eggs"},
       {id: 3, name: "hotdog"}
@@ -21,14 +22,7 @@ class App extends React.Component {
     })
   }
 
-    //    const recipesArray = [ {id: 3, name: "burger"},
-    // {id: 4, name: "eggs"},
-    // {id: 5, name: "hotdog"}]
-    // this.setState({
-    //   recipes: recipesArray
-    // })
-    
-      
+  
 
     render () {
  

@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { render, getAllByTestId } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import Form from './Components/Form.js';
 import FormTest from "./Components/Form.test.js"
+import '@testing-library/jest-dom/extend-expect'
 // import Recipes from "./Components/recipes.js";
 
 describe('<App />', () => {
@@ -14,21 +15,14 @@ it('renders without crashing', () => {
 });
 })
 describe("<Form />", () => {
+it('renders without crashing', () => {
+  render(<Form />)
+})
 
 it('passes props correctly', () => {
   const form = render(<Form h2= "User Signup"/>);
   form.getAllByText(/user signup/i);
 });
-
-it("testing submit button", () => {
-  const form = render(<Form />);
-  const submitButton = form.getAllByTestId("test");
-  const testP = form.getByTestId("testP")
-
-  form.fireEvent.click(submitButton);
-  expect(testP.textContent).toBe("Test");
-  
-})
 
 })
 
@@ -44,6 +38,17 @@ describe("<FormTest />", () => {
     const recipe = formRecipe.getAllByTestId("name");
   
     expect(recipe).toHaveLength(recipeData.length)
+  })
+
+  it("testing submit button", () => {
+    const form = render(<FormTest />);
+    const submitButton = form.getAllByTestId("test");
+    const testP = form.getAllByTestId("testP")
+
+    expect(testP.textContent).toBe("test");
+    fireEvent.click(submitButton);
+    expect(testP.textContent).toBe("TestTest");
+    
   })
 })
 
