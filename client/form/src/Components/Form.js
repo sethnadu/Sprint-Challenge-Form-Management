@@ -9,12 +9,14 @@ import RecipesCard from "./recipes.js";
 
 const FormOriginal = ({touched, errors, addRecipe, recipes}) => {
 
-        useEffect(() => {
-            axios
-            .get("http://localhost:5000/api/restricted/data")
-            .then(response => addRecipe(response.data))
-            .catch(error => console.log(error))
-        }, [addRecipe])
+        // useEffect(() => {
+        //     axios
+        //     .get("http://localhost:5000/api/restricted/data")
+        //     .then(response => addRecipe(response.data))
+        //     .catch(error => console.log(error))
+        // }, [addRecipe])
+
+    
 
     return (
         <div>
@@ -24,11 +26,11 @@ const FormOriginal = ({touched, errors, addRecipe, recipes}) => {
                 {touched.username && errors.username && <p>{errors.username}</p>}
                 <Field type = "password" name = "password" placeholder = "Password" />
                 {touched.password && errors.password && <p>{errors.password}</p>}
-                <button type ="submit">Submit</button>
+                <button data-testid="test"  type ="submit">Submit</button>
 
-                {recipes.map(recipe => {
+                {/* {recipes.map(recipe => {
                   return  <RecipesCard data-testid="recipe" key = {Date.now()} recipe = {recipe} />
-                })};
+                })}; */}
 
             </Form>
             {}
@@ -54,7 +56,9 @@ const FormikForm = withFormik({
             .post("http://localhost:5000/api/register", values)
             .then(response => console.log(response.data))
             .catch(error => console.log(error))
+          
         resetForm();    
+        
     }   
 })(FormOriginal);
 

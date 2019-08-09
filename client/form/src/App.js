@@ -11,6 +11,7 @@ class App extends React.Component {
       {id: 2, name: "eggs"},
       {id: 3, name: "hotdog"}
     ]
+      
     }
   }
  
@@ -33,7 +34,7 @@ class App extends React.Component {
  
         return (
           <div className="App">
-          <FormikForm users = {this.state.users} recipes = {this.state.recipes}  addUser = {this.addUser} addRecipe = {this.addRecipe}/>
+          <FormikForm recipes = {this.state.recipes}  addUser = {this.addUser} addRecipe = {this.addRecipe}/>
           </div>
        );
     }
